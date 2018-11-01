@@ -49,6 +49,7 @@ class Inventario_model extends CI_Model {
 	    $this->db->join("ventas v", "dv.venta_id = v.id");
 	    $this->db->where("v.fecha >=","2018-10-01");
 	    $this->db->where("v.fecha <=","2018-10-31");
+	    $this->db->where("v.estado !=","0");
 	    $this->db->where("dv.producto_id", $producto_id);
 	    $this->db->group_by("dv.producto_id");
 	    $resultado = $this->db->get();

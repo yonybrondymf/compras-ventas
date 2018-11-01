@@ -52,6 +52,8 @@
                                                 <td>
                                                     <?php if ($venta->estado == "1") {
                                                         echo '<span class="label label-success">Pagado</span>';
+                                                    }else if($venta->estado == "2"){
+                                                        echo '<span class="label label-warning">Pendiente</span>';
                                                     }else{
                                                         echo '<span class="label label-danger">Anulado</span>';
                                                     } ?>

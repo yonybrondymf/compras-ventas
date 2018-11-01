@@ -123,7 +123,7 @@ class Backend_lib{
 	public function saveInventario(){
 		$this->CI->load->model("Productos_model");
 		$this->CI->load->model("Inventario_model");
-		if (date("j") == 17 && !$this->CI->Inventario_model->getInventario(date("n"), date("Y"))) {
+		if (date("j") == 25 && !$this->CI->Inventario_model->getInventario(date("n"), date("Y"))) {
 			
 			$dataInventario = array(
 				"month" => date("n"),

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2018 a las 06:58:17
+-- Tiempo de generación: 26-10-2018 a las 16:46:55
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.0.25
 
@@ -131,13 +131,7 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`id`, `fecha`, `subtotal`, `total`, `comprobante`, `proveedor_id`, `tipo_pago_id`, `usuario_id`, `almacen_id`, `estado`, `numero`, `serie`) VALUES
-(3, '2018-10-14', '60.00', '70.80', 'Factura', 1, 1, 5, NULL, 1, '00000123', '001'),
-(4, '2018-10-16', '30.00', '35.40', 'Factura', 1, 1, 5, NULL, 1, '00001234', '001'),
-(5, '2018-10-17', '60.00', '70.80', 'Factura', 1, 1, 5, NULL, 1, '0012012', '001'),
-(6, '2018-10-17', '108.00', '127.44', 'Factura', 1, 1, 5, NULL, 1, '00000122', '001'),
-(7, '2018-10-18', '69.00', '69.00', 'Factura', 1, 1, 5, NULL, 1, '00001228', '001'),
-(8, '2018-10-19', '48.00', '48.00', 'Factura', 1, 1, 5, NULL, 1, '0001213', '001'),
-(9, '2018-10-20', '57.60', '57.60', 'Factura', 1, 1, 5, NULL, 1, '0001212', '001');
+(11, '2018-10-25', '108.00', '108.00', 'Factura', 1, 1, 5, NULL, 1, '45464545', '001');
 
 -- --------------------------------------------------------
 
@@ -178,14 +172,7 @@ CREATE TABLE `detalle_compra` (
 --
 
 INSERT INTO `detalle_compra` (`id`, `compra_id`, `producto_id`, `precio`, `cantidad`, `importe`, `marca_id`) VALUES
-(1, 3, 188, '2.50', '24', '60.00', NULL),
-(2, 4, 188, '2.50', '12', '30.00', NULL),
-(3, 5, 188, '2.50', '24', '60.00', NULL),
-(4, 6, 189, '9.00', '12', '108.00', NULL),
-(5, 7, 188, '2.50', '6', '15.00', NULL),
-(6, 7, 189, '9.00', '6', '54.00', NULL),
-(7, 8, 190, '4.00', '12', '48.00', NULL),
-(8, 9, 191, '1.20', '48', '57.60', NULL);
+(10, 11, 189, '9.00', '12', '108.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -207,14 +194,7 @@ CREATE TABLE `detalle_venta` (
 --
 
 INSERT INTO `detalle_venta` (`id`, `producto_id`, `venta_id`, `precio`, `cantidad`, `importe`) VALUES
-(4015, 188, 1077, '2.50', 6, '15.00'),
-(4016, 188, 1078, '2.50', 3, '7.50'),
-(4017, 188, 1079, '2.50', 6, '15.00'),
-(4019, 190, 1081, '4.00', 2, '8.00'),
-(4021, 190, 1082, '4.00', 1, '4.00'),
-(4022, 189, 1083, '9.00', 3, '27.00'),
-(4023, 188, 1083, '2.50', 4, '10.00'),
-(4024, 190, 1084, '4.00', 5, '20.00');
+(4030, 189, 1088, '9.00', 2, '18.00');
 
 -- --------------------------------------------------------
 
@@ -283,7 +263,7 @@ CREATE TABLE `inventarios` (
 --
 
 INSERT INTO `inventarios` (`id`, `month`, `year`, `usuario_id`, `created_at`) VALUES
-(19, 10, 2018, 5, '2018-10-17 05:00:00');
+(20, 10, 2018, 5, '2018-10-25 05:00:00');
 
 -- --------------------------------------------------------
 
@@ -303,8 +283,9 @@ CREATE TABLE `inventario_producto` (
 --
 
 INSERT INTO `inventario_producto` (`id`, `producto_id`, `inventario_id`, `cantidad`) VALUES
-(31, 188, 19, 21),
-(32, 189, 19, 0);
+(33, 188, 20, 21),
+(34, 189, 20, 0),
+(35, 190, 20, 3);
 
 -- --------------------------------------------------------
 
@@ -329,7 +310,15 @@ INSERT INTO `logs` (`id`, `fecha`, `usuario_id`, `modulo`, `accion`) VALUES
 (2, '2018-10-23 22:35:37', 5, 'Usuarios', 'Inicio de sesión'),
 (3, '2018-10-23 22:47:18', 5, 'Productos', 'Actualización del Producto con codigo de barra 7756641003971'),
 (4, '2018-10-23 22:47:40', 5, 'Productos', 'Eliminación del  Producto con codigo de barra 7750885014649'),
-(5, '2018-10-23 22:56:30', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1084');
+(5, '2018-10-23 22:56:30', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1084'),
+(6, '2018-10-25 20:53:17', 5, 'Usuarios', 'Inicio de sesión'),
+(7, '2018-10-25 22:58:23', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1085'),
+(8, '2018-10-25 23:05:05', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1086'),
+(9, '2018-10-25 23:28:21', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1087'),
+(10, '2018-10-25 23:29:17', 5, 'Ventas', 'Actualizacion de la venta con identificador 1087'),
+(11, '2018-10-25 23:30:48', 5, 'Ventas', 'Actualizacion de la venta con identificador 1087'),
+(12, '2018-10-25 23:47:59', 5, 'Ventas', 'Inserción de una nueva venta con identificador 1088'),
+(13, '2018-10-25 23:48:25', 5, 'Ventas', 'Eliminacion de la venta con identificador 1088');
 
 -- --------------------------------------------------------
 
@@ -421,6 +410,14 @@ CREATE TABLE `notificaciones` (
   `producto_id` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `producto_id`, `estado`) VALUES
+(1, 190, 1),
+(2, 189, 1);
 
 -- --------------------------------------------------------
 
@@ -549,9 +546,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo_barras`, `codigo_slug`, `nombre`, `descripcion`, `precio`, `precio_compra`, `stock`, `stock_minimo`, `categoria_id`, `subcategoria_id`, `imagen`, `presentacion_id`, `marca_id`, `pasillo`, `estanteria`, `estado`, `almacen_id`) VALUES
-(188, '7756641003971', NULL, 'Desinfectante Poet Primavera de 648ml', 'Desinfectante Poet Primavera de 648ml', '3.00', '2.50', 68, 10, 25, 5, 'sally_carrera1.jpg', 1, 1, '3', '4', 1, NULL),
-(189, '7751271011693', NULL, 'Detergente Ariel de 1kg', 'Detergente Ariel de 1kg', '10.00', '9.00', 1, 5, 25, 5, 'Penguins.jpg', 1, 1, '3', '2', 1, NULL),
-(190, '7759307005197', NULL, 'Lejia Clorox de 1litro', 'Lejia Clorox de 1litro', '5.00', '4.00', 5, 5, 25, 5, 'Penguins1.jpg', 1, 1, '1', '3', 1, NULL),
+(188, '7756641003971', NULL, 'Desinfectante Poet Primavera de 648ml', 'Desinfectante Poet Primavera de 648ml', '3.00', '2.50', 21, 10, 25, 5, 'sally_carrera1.jpg', 1, 1, '3', '4', 1, NULL),
+(189, '7751271011693', NULL, 'Detergente Ariel de 1kg', 'Detergente Ariel de 1kg', '10.00', '9.00', 12, 5, 25, 5, 'Penguins.jpg', 1, 1, '3', '2', 1, NULL),
+(190, '7759307005197', NULL, 'Lejia Clorox de 1litro', 'Lejia Clorox de 1litro', '5.00', '4.00', 3, 5, 25, 5, 'Penguins1.jpg', 1, 1, '1', '3', 1, NULL),
 (191, '7750885014649', NULL, 'Avena 3 ositos', 'Avena 3 ositos', '1.50', '1.20', 48, 6, 25, 5, 'Lighthouse1.jpg', 1, 1, '1', '2', 0, NULL);
 
 -- --------------------------------------------------------
@@ -668,9 +665,9 @@ CREATE TABLE `tipo_comprobante` (
 --
 
 INSERT INTO `tipo_comprobante` (`id`, `nombre`, `iva`, `serie`, `fecha_registro`, `no_inicial`, `no_final`, `resolucion`, `fecha_resolucion`, `predeterminado`, `estado`, `cantidad`) VALUES
-(3, 'Factura', 18, '001', '0000-00-00 00:00:00', 1, 99999999, 'resolucion 01', '0000-00-00', 0, 1, 1),
-(4, 'Boleta', 0, '002', '0000-00-00 00:00:00', 1, 99999999, 'resolucion 01', '0000-00-00', 1, 1, 3),
-(5, 'Ticket', 0, '001', '2018-10-18 00:00:00', 1, 99999999, 'resolucion 01', '2018-10-18', 0, 1, 3);
+(3, 'Factura', 18, '001', '0000-00-00 00:00:00', 1, 99999999, 'resolucion 01', '0000-00-00', 0, 1, 2),
+(4, 'Boleta', 0, '002', '0000-00-00 00:00:00', 1, 99999999, 'resolucion 01', '0000-00-00', 1, 1, 5),
+(5, 'Ticket', 0, '001', '2018-10-18 00:00:00', 1, 99999999, 'resolucion 01', '2018-10-18', 0, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -804,7 +801,6 @@ CREATE TABLE `ventas` (
   `monto_recibido` varchar(45) DEFAULT NULL,
   `cambio` varchar(45) DEFAULT NULL,
   `estado` tinyint(1) NOT NULL,
-  `tipo_pago` int(11) DEFAULT NULL,
   `iva` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -812,14 +808,8 @@ CREATE TABLE `ventas` (
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`id`, `fecha`, `subtotal`, `descuento`, `total`, `tipo_comprobante_id`, `cliente_id`, `usuario_id`, `num_documento`, `monto_recibido`, `cambio`, `estado`, `tipo_pago`, `iva`) VALUES
-(1077, '2018-10-14', '15.00', '0.00', '15.00', 4, 95, 5, '00000001', NULL, NULL, 1, 1, '0.00'),
-(1078, '2018-10-15', '7.50', '0.00', '7.50', 4, 95, 5, '00000002', NULL, NULL, 1, 1, '0.00'),
-(1079, '2018-10-16', '15.00', '0.00', '15.00', 4, 95, 5, '00000003', NULL, NULL, 1, 1, '0.00'),
-(1081, '2018-10-20', '8.00', '0.00', '8.00', 5, 95, 5, '00000001', NULL, NULL, 1, 1, '0.00'),
-(1082, '2018-10-20', '4.00', '0.00', '4.00', 5, 95, 5, '00000002', NULL, NULL, 0, 1, '0.00'),
-(1083, '2018-10-20', '37.00', '0.00', '43.66', 3, 95, 5, '00000001', NULL, NULL, 1, 1, '6.66'),
-(1084, '2018-10-23', '20.00', '0.00', '20.00', 5, 95, 5, '00000003', NULL, NULL, 1, 1, '0.00');
+INSERT INTO `ventas` (`id`, `fecha`, `subtotal`, `descuento`, `total`, `tipo_comprobante_id`, `cliente_id`, `usuario_id`, `num_documento`, `monto_recibido`, `cambio`, `estado`, `iva`) VALUES
+(1088, '2018-10-25', '18.00', '0.00', '18.00', 4, 95, 5, '00000005', NULL, NULL, 0, '0.00');
 
 --
 -- Índices para tablas volcadas
@@ -1053,8 +1043,7 @@ ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_usuario_venta_idx` (`usuario_id`),
   ADD KEY `fk_cliente_venta_idx` (`cliente_id`),
-  ADD KEY `fk_tipo_comprobante_venta_idx` (`tipo_comprobante_id`),
-  ADD KEY `fk_tipo_pago_ventas_idx` (`tipo_pago`);
+  ADD KEY `fk_tipo_comprobante_venta_idx` (`tipo_comprobante_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1088,7 +1077,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `configuraciones`
@@ -1100,13 +1089,13 @@ ALTER TABLE `configuraciones`
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4025;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4031;
 
 --
 -- AUTO_INCREMENT de la tabla `documento_prov`
@@ -1130,19 +1119,19 @@ ALTER TABLE `gastos`
 -- AUTO_INCREMENT de la tabla `inventarios`
 --
 ALTER TABLE `inventarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario_producto`
 --
 ALTER TABLE `inventario_producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -1160,7 +1149,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -1250,7 +1239,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1085;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1089;
 
 --
 -- Restricciones para tablas volcadas
@@ -1352,7 +1341,6 @@ ALTER TABLE `usuarios`
 ALTER TABLE `ventas`
   ADD CONSTRAINT `fk_cliente_venta` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tipo_comprobante_venta` FOREIGN KEY (`tipo_comprobante_id`) REFERENCES `tipo_comprobante` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tipo_pago_ventas` FOREIGN KEY (`tipo_pago`) REFERENCES `tipo_pago` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_venta` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 

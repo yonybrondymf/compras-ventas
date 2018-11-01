@@ -73,7 +73,6 @@ class Ventas extends CI_Controller {
 		$idcliente = $this->input->post("idcliente");
 		$idusuario = $this->session->userdata("id");
 		$num_documento = $this->numberDocumentGenerated($comprobante_id);
-		$estado = 1;
 
 		$idproductos = $this->input->post("idproductos");
 		$precios = $this->input->post("precios");
@@ -91,8 +90,7 @@ class Ventas extends CI_Controller {
 			'cliente_id' => $idcliente,
 			'usuario_id' => $idusuario,
 			'num_documento' => $num_documento,
-			'estado' => $estado,
-			'tipo_pago' => $tipo_pago
+			'estado' => $tipo_pago,
 		);
 
 		if ($this->Ventas_model->save($data)) {
@@ -152,13 +150,34 @@ class Ventas extends CI_Controller {
 
 			$this->Ventas_model->save_detalle($data);
 			$this->updateStockProducto($productos[$i],$cantidades[$i]);
+			$this->GenerarNotificacion($productos[$i]);
 			//Descontar stock de los productos asociados
 			$cantidadProdAsociados = $this->Productos_model->getProductosA($productos[$i]);
 			if (!empty($cantidadProdAsociados)) {
 				foreach ($cantidadProdAsociados as $cpa) {
 					$this->updateStockProducto($cpa->producto_asociado,($cantidades[$i] * $cpa->cantidad));
+					$this->GenerarNotificacion($cpa->producto_asociado);
 				}
 			}
+		}
+		$this->reset_stock_negative();
+	}
+
+	protected function reset_stock_negative(){
+		$data = array(
+			"stock" => 0
+		);
+		$products = $this->Productos_model->setear_stock_negative($data);
+	}
+
+	protected function GenerarNotificacion($idproducto){
+		$productoActual = $this->Productos_model->getProducto($idproducto);
+		if ($productoActual->stock <= $productoActual->stock_minimo) {
+			$data = array(
+				'estado' => 0,
+				'producto_id' => $idproducto
+			);
+			$this->Ventas_model->saveNotificacion($data);
 		}
 	}
 
@@ -274,7 +293,7 @@ class Ventas extends CI_Controller {
 			'tipo_comprobante_id' => $comprobante_id,
 			'cliente_id' => $idcliente,
 			'usuario_id' => $idusuario,
-			'tipo_pago' => $tipo_pago
+			'estado' => $tipo_pago
 		);
 
 		$this->retornarStockVenta($idventa);

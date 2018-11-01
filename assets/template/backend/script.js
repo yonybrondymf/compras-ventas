@@ -177,12 +177,32 @@ $(document).ready(function () {
         sumarCompra();
     });
     $(document).on("keyup mouseup","#tbventas input.cantidadesVenta", function(){
-        cantidad = Number($(this).val());
+
+        cantidad = $(this).val();
         precio = Number($(this).closest("tr").find("td:eq(3)").text());
-        importe = cantidad * precio;
+        stock = Number($(this).closest("tr").find("td:eq(4)").text());
+
+        if (cantidad!='') {
+            if (cantidad == 0) {
+                alertify.error("El valor ingresada no puede ser menor a la unidad");
+                $(this).val('1');
+                importe = precio;
+            }else if(cantidad > stock){
+                alertify.error("El valor ingresada no puede sobrepasar el stock");
+                $(this).val(stock);
+                importe = precio * stock;
+            }else{
+                importe = Number(cantidad) * precio;
+            }
+        }else{
+            importe = 0;
+        }
+
         $(this).closest("tr").find("td:eq(6)").children("p").text(importe.toFixed(2));
         $(this).closest("tr").find("td:eq(6)").children("input").val(importe.toFixed(2));
-        sumarVenta();  
+        sumarVenta();
+        
+          
     });
 
     $("#btn-guardar-compra").on("click", function(){
@@ -949,7 +969,7 @@ $(document).ready(function () {
             html +="<td>"+ui.item.marca+"</td>";
             html +="<td><input type='hidden' name='precios[]' value='"+ui.item.precio_compra+"'>"+ui.item.precio_compra+"</td>";
             html +="<td>"+ui.item.stock+"</td>";
-            html +="<td><input type='text' name='cantidades[]' class='cantidadesVenta' value='1' onkeypress='validate(event)'></td>";
+            html +="<td><input type='text' name='cantidades[]' class='cantidadesVenta' value='1' onkeypress='validate(event)' required='required'></td>";
             html +="<td><input type='hidden' name='importes[]' value='"+ui.item.precio_compra+"'><p>"+ui.item.precio_compra+"</p></td>";
             html +="<td><button type='button' class='btn btn-danger btn-remove-producto-compra'><span class='fa fa-times'></span></button></td>";
             html +="</tr>"

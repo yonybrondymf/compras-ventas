@@ -72,10 +72,9 @@
                                
                                     <label for="">Tipo de Pago:</label>
                                     <select name="tipo_pago" id="tipo_pago" class="form-control" required>
-                                        <option value="">Seleccione...</option>
-                                        <?php foreach($tipopagos as $tipopago):?> 
-                                            <option value="<?php echo $tipopago->id;?>" <?php echo $tipopago->predeterminado==1?'selected':'';?>><?php echo $tipopago->nombre?></option>
-                                        <?php endforeach;?>
+                                        
+                                        <option value="1">Efectivo</option>
+                                        <option value="2">Credito</option>
                                     </select>
                                  
                                     <label for="">Fecha:</label>
